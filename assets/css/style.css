@@ -374,6 +374,12 @@ button[type="submit"]{
 	background-color: #e84610;
 }
 
+/* ______________________Interests */
+
+#map {
+    height: 600px;
+    width: 100%;
+}
 
 /* ______________________Media Queries*/
 
@@ -388,7 +394,3 @@ button[type="submit"]{
 
 }
 
-#map {
-    height: 600px;
-    width: 100%;
-}
