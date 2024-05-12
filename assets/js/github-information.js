@@ -43,7 +43,6 @@ function fetchGitHubInformation(event) {
 	let username = $("#gh-username").val();
 	if (!username) {
 		$("#gh-user-data").html(`<h2>Please enter a GitHub username</h2>`);
-		console.log("true");
 		return;
 	}
 
@@ -65,6 +64,9 @@ function fetchGitHubInformation(event) {
 			if (errorResponse.status === 404) {
 				$("#gh-user-data").html(
 					`<h2>No info found for user ${username}</h2>`);
+			} else if(errorResponse.status === 403) {
+				let resetTime = new Date(errorResponse.getResponseHeader("X-RateLimit-Reset")*1000);
+				$("#gh-user-data").html(`<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`);
 			} else {
 				console.log(errorResponse);
 				$("#gh-user-data").html(
